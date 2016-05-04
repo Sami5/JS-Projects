@@ -12,24 +12,28 @@ function smallestCommons(arr) {
     i++;
   }
 
-  var count = {two: 0, three: 0, five: 0, seven: 0, eleven: 0, thirteen: 0}; 
+  // More prime numbers can be added to increase capacity if required
+  var count = {two: 0, three: 0, five: 0, seven: 0, eleven: 0, thirteen: 0, seventeen: 0, nineteen: 0}; 
+  var primes = [2, 3, 5, 7, 11, 13, 17, 19];
   var keys = Object.keys(count);
-  var numbers = [2, 3, 5, 7, 11, 13];
   var loop = 1;
 
+  var rLength = range.length;
+  var pLength = primes.length;
+
+  // Function used to check that every item in the range has been reduced to
+  // 1 and therefore all prime factors identified
   function checkOne(item, index){
     return item == 1;
   }
-  var rLength = range.length;
-  var nLength = numbers.length;
 
   // Smallest common multiple calculation 
   while (range.every(checkOne) !== true) {
     for (j = 0; j < rLength; j++) {
-      for (y = 0; y < nLength; y++) {  
-        if (range[j] % numbers[y] === 0) {
+      for (y = 0; y < pLength; y++) {  
+        if (range[j] % primes[y] === 0) {
           count[keys[y]] = loop;
-          range[j] = range[j]/numbers[y];
+          range[j] = range[j]/primes[y];
         } 
       }
     }
@@ -38,9 +42,9 @@ function smallestCommons(arr) {
 
   // Multiply for result
   var result = [];
-  for (x = 0; x < nLength; x++) {
+  for (x = 0; x < pLength; x++) {
     if (count[keys[x]] !== 0) {
-      result.push(Math.pow(numbers[x], count[keys[x]]));
+      result.push(Math.pow(primes[x], count[keys[x]]));
     }
 
   }
