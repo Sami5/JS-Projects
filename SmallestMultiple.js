@@ -1,7 +1,7 @@
 // Smallest Common Multiple using Prime Factorisation
 
 function smallestCommons(arr) {
-  arr.sort(function(a, b){return a - b });
+  arr.sort((a, b) => a - b);
   var range = [arr[0]];
   var length = (arr[1] - arr[0]);
   var i = 1;
@@ -14,7 +14,7 @@ function smallestCommons(arr) {
 
   // More prime numbers can be added to increase capacity if required
   var count = {two: 0, three: 0, five: 0, seven: 0, eleven: 0, thirteen: 0, seventeen: 0, nineteen: 0}; 
-  var primes = [2, 3, 5, 7, 11, 13, 17, 19];
+  const primes = [2, 3, 5, 7, 11, 13, 17, 19];
   var keys = Object.keys(count);
   var loop = 1;
 
@@ -48,7 +48,7 @@ function smallestCommons(arr) {
     }
 
   }
-  return result.reduce(function(a, b){return a * b});
+  return result.reduce((a, b) => a * b);
 }
 
 smallestCommons([1,13]);
