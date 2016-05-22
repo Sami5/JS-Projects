@@ -21,14 +21,11 @@ function smallestCommons(arr) {
   var rLength = range.length;
   var pLength = primes.length;
 
-  // Function used to check that every item in the range has been reduced to
+  // Function used in every() is to check that every item in the range has been reduced to
   // 1 and therefore all prime factors identified
-  function checkOne(item, index){
-    return item == 1;
-  }
 
   // Smallest common multiple calculation 
-  while (range.every(checkOne) !== true) {
+  while (range.every(item => item === 1) !== true) {
     for (j = 0; j < rLength; j++) {
       for (y = 0; y < pLength; y++) {  
         if (range[j] % primes[y] === 0) {
@@ -46,7 +43,6 @@ function smallestCommons(arr) {
     if (count[keys[x]] !== 0) {
       result.push(Math.pow(primes[x], count[keys[x]]));
     }
-
   }
   return result.reduce((a, b) => a * b);
 }
